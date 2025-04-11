@@ -1,0 +1,22 @@
+---
+interface Props {
+  src: string
+  title?: string
+  height?: number
+}
+
+const { src, height = 800 } = Astro.props
+---
+
+<div class="mx-auto max-w-6xl px-4 py-8">
+  <div class="overflow-hidden rounded-lg border shadow">
+    <iframe
+      src={src + '#view=FitH'}
+      width="100%"
+      height={height}
+      class="w-full"
+      loading="lazy"
+    >
+    </iframe>
+  </div>
+</div>

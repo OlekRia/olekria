@@ -1,0 +1,36 @@
+---
+type Props = {
+  label: string
+  href: string
+  menu?: {
+    label: string
+    href: string
+  }[]
+}
+
+const { label, href = '#', menu = [] } = Astro.props
+---
+
+<div class="group relative">
+  <a
+    href={href}
+    class="hover:text-link menu font-medium tracking-wide transition-colors duration-200"
+  >
+    {label}
+  </a>
+
+  {
+    menu && (
+      <div class="bg-background invisible absolute top-full left-0 z-50 mt-2 w-48 rounded-xl opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+        {menu.map(item => (
+          <a
+            href={item.href}
+            class="menu block px-4 py-2 whitespace-nowrap hover:bg-gray-100"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    )
+  }
+</div>

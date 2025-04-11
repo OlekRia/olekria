@@ -1,0 +1,42 @@
+---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
+import Gallery from '../components/alpha/Gallery.astro'
+
+interface Props {
+  title: string
+  img?: ImageMetadata | (ImageMetadata | string)[]
+  alt?: string
+}
+
+const { img, alt = '', title = '' } = Astro.props
+
+const hasImage = !!img
+const gridClass = hasImage ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1' // fallback for no image
+---
+
+<div class={`mx-auto grid max-w-6xl ${gridClass} gap-8 px-4 py-10 sm:px-8`}>
+  <div class="prose">
+    {title && <h1>{title}</h1>}
+    <slot />
+  </div>
+
+  {
+    hasImage && (
+      <div>
+        {Array.isArray(img) ? (
+          <Gallery images={img as string[]} />
+        ) : (
+          <Image
+            class="h-auto w-full object-cover"
+            src={img as ImageMetadata}
+            alt={alt}
+            format="avif"
+            width={1200}
+            height={800}
+          />
+        )}
+      </div>
+    )
+  }
+</div>

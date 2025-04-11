@@ -1,0 +1,67 @@
+---
+type Props = {
+  label: string
+  href?: string
+  menu?: {
+    label: string
+    href: string
+  }[]
+}
+
+const { label, href = '#', menu = [] } = Astro.props
+const hasSubmenu = menu.length > 0
+---
+
+<div class="w-full">
+  <div class="flex w-full items-center justify-between py-2">
+    <a href={href} class="hover:text-link flex-1 font-medium">
+      {label}
+    </a>
+
+    {
+      hasSubmenu && (
+        <span
+          class="cursor-pointer rounded-md p-2 transition hover:bg-gray-100"
+          onclick={`
+          const allSubmenus = document.querySelectorAll('.submenu');
+          allSubmenus.forEach(el => el.classList.add('hidden'));
+          const next = this.closest('div').nextElementSibling;
+          if (next && next.classList.contains('submenu')) {
+            next.classList.toggle('hidden');
+          }
+        `}
+        >
+          <svg
+            class="h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </span>
+      )
+    }
+  </div>
+
+  {
+    hasSubmenu && (
+      <div class="submenu ml-2 hidden border-l border-gray-200 pl-4">
+        {menu.map(item => (
+          <a
+            href={item.href}
+            class="menu hover:text-link block py-1 text-sm transition"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    )
+  }
+</div>

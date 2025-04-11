@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --color-primary: #e2061e;
+  --color-primary-hovered: #b50518;
+  --color-link: #398dcd;
+  --color-link-hovered: #2563aa;
+  --color-foreground: #364153;
+  --color-foreground-reversed: white;
+  --color-background: white;
+  --color-border: #f3f4f6;
+}
+
+@layer base {
+  html {
+    @apply text-foreground bg-background;
+  }
+}
+
+:root {
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+  cursor: pointer;
+  color: var(--color-link);
+  cursor: pointer;
+}
+
+a.menu {
+  color: var(--color-foreground);
+}
+
+a:hover {
+  color: var(--color-link-hovered);
+}
+
+.prose pre {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+h1 {
+  color: var(--color-foreground);
+  font-size: 1.5rem;
+}
+
+h2 {
+  color: var(--color-foreground);
+  font-size: 1.25rem;
+}

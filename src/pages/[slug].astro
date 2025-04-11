@@ -1,0 +1,30 @@
+---
+import { getCollection, getEntry, render } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+import ArticleLayout from '../layouts/ArticleLayout.astro'
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles')
+  return articles.map(article => ({
+    params: { slug: article.slug },
+  }))
+}
+
+export const prerender = true
+
+const { slug } = Astro.params
+const article = await getEntry('articles', slug)
+
+if (!article) {
+  Astro.redirect('404')
+}
+
+const { title, tabName, image, imageAlt } = article!.data ?? {}
+const { Content } = await render(article!)
+---
+
+<Layout title={tabName}>
+  <ArticleLayout img={image} alt={imageAlt} title={title}>
+    <Content />
+  </ArticleLayout>
+</Layout>

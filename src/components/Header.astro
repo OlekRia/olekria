@@ -1,0 +1,88 @@
+---
+import Logo from '../components/alpha/Logo.astro'
+import Button from '../components/alpha/Button.astro'
+import MenuItem from '../components/alpha/MenuItem.astro'
+import MenuItemMobile from './alpha/MenuItemMobile.astro'
+import menuItems from '../data/menu'
+---
+
+<header
+  class="bg-background border-border sticky top-0 z-50 flex justify-center border-b shadow-sm"
+>
+  <div id="header" class="w-full max-w-6xl gap-4 px-4 py-4 sm:px-8">
+    <div class="logo">
+      <Logo />
+    </div>
+
+    <!-- Hamburger - shown on mobile only -->
+    <button
+      class="cursor-pointer focus:outline-none sm:hidden"
+      onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
+    <!-- Desktop nav -->
+    <nav
+      class="menu hidden w-full flex-wrap items-center justify-center gap-4 sm:flex sm:w-auto sm:justify-center"
+    >
+      {menuItems.map(item => <MenuItem {...item} />)}
+    </nav>
+
+    <div class="button invisible hidden sm:block">
+      <Button>Anmeldung</Button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden px-12 pb-4 sm:hidden">
+    <nav class="flex flex-col gap-2">
+      {menuItems.map(item => <MenuItemMobile {...item} />)}
+    </nav>
+    <div class="mt-4">
+      <Button>Anmeldung</Button>
+    </div>
+  </div>
+</header>
+
+<style>
+  #header {
+    display: grid;
+    grid-template-areas:
+      'logo button'
+      'menu menu';
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .logo {
+    grid-area: logo;
+  }
+
+  .menu {
+    grid-area: menu;
+  }
+
+  .button {
+    grid-area: button;
+  }
+
+  @media (min-width: 54.5rem) {
+    #header {
+      grid-template-areas: 'logo menu button';
+      grid-template-columns: auto 1fr auto;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Statuten">
+  <div
+    class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-10 sm:px-8"
+  >
+    <h1 class="w-full text-start">Spiellokal</h1>
+
+    <div id="spiellokal-text" class="prose-lg">
+      <p>
+        Der Bridge Club Winterthur spielt im Clublokal an der Industriestrasse
+        26a (im 5. Stock) in 8404 Winterthur.
+      </p>
+
+      <p>
+        Mit dem öffentlichen Verkehr erreicht man das Spiellokal ab dem
+        Hauptbahnhof mit der Buslinie 5 Richtung Technorama oder mit der Linie 7
+        in Richtung Elsau (Melcher). Die Haltestelle "Rudolf Diesel" ist rund
+        drei Gehminuten vom Spiellokal entfernt. Als Alternative kann man mit
+        der Buslinie 3 Richtung Oberseen bis zur Haltestelle "Eishalle" fahren.
+      </p>
+
+      <p>
+        Mit der S-Bahn fährt man vom Hauptbahnhof bis Winterthur Grüze. Von dort
+        ist man zu Fuss in rund zehn Minuten am Zielort.
+      </p>
+    </div>
+
+    <div class="w-full max-w-3xl">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5428.8211284923555!2d8.75286879437179!3d47.49650290781884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a99926fbb6519%3A0xe7efba01b7fc0a3d!2sBridge-Club%20Winterthur!5e0!3m2!1sen!2sch!4v1744384803110!5m2!1sen!2sch"
+        class="h-96 w-full border-0"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    font-weight: 800;
+  }
+
+  #spiellokal-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>
