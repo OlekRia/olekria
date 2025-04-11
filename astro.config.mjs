@@ -6,7 +6,6 @@ import mdx from '@astrojs/mdx'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://olekrial.github.io',
-  base: 'wbc',
   vite: {
     plugins: [tailwindcss()],
   },
